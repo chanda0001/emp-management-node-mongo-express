@@ -1,0 +1,50 @@
+<!-- <h2>Welcome Admin Panel</h2>
+<script>
+    const user = localStorage.getItem('userName');
+    document.body.innerHTML += `<p>Welcome, ${user}</p>`;
+</script> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/css/login.css" />
+
+</head>
+
+<body>
+    <!-- Header Section -->
+    <div class="header1">
+        <div class="left">Logo</div>
+        <div class="center">
+            <a href="/">Home</a>
+            <a href="/employee">Employee List</a>
+        </div>
+        <div class="right">
+            <div id="userName">User</div>
+            <div><a href="#" onclick="logout()">Logout</a></div>
+        </div>
+    </div>
+
+    <!-- Menu Section -->
+    <div class="menu">DashBord</div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <h2>Welcome Admin Panel</h2>
+        <p id="welcomeText"></p>
+    </div>
+
+    <script>
+        // Load user from localStorage
+        const user = localStorage.getItem('userName') || 'Admin';
+        document.getElementById("userName").innerText = user;
+        document.getElementById("welcomeText").innerText = `Welcome, ${user}`;
+    </script>
+
+    <script src="/js/employee.js"></script>
+</body>
+
+</html>

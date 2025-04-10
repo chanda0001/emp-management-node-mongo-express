@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee List</title>
+    <link rel="stylesheet" href="/css/login.css" />
+</head>
+
+<body>
+    <div class="header1">
+        <div class="left">Logo</div>
+        <div class="center">
+            <a href="/">Home</a>
+            <a href="/employee">Employee List</a>
+        </div>
+        <div class="right">
+            <div id="userName">User</div>
+            <div><a href="#" onclick="logout()">Logout</a></div>
+        </div>
+    </div>
+    <div class="top-bar">
+        <div class="title">Employee List</div>
+        <div class="right-controls">
+            <div>Total Count: <%= total %>
+            </div>
+            <a href=" /employee/create" class="btn-create">Create Employee</a>
+            <form method="GET" action="/employee" class="search-form">
+                <input type="text" name="search" placeholder="Enter Search Keyword" value="<%= search %>" />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Unique Id</th>
+                <th>Image</th>
+                <th><a href="?sort=name">Name</a></th>
+                <th><a href="?sort=email">Email</a></th>
+                <th><a href="?sort=mobile">Mobile No</a></th>
+                <th>Designation</th>
+                <th>Gender</th>
+                <th>Course</th>
+                <th><a href="?sort=createdAt">Create date</a></th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% employees.forEach((emp, index)=> { %>
+                <tr>
+                    <td>
+                        <%= index + 1 %>
+                    </td>
+                    <td><img src="/uploads/<%= emp.image %>" width="50" /></td>
+                    <td>
+                        <%= emp.name %>
+                    </td>
+                    <td><a href="mailto:<%= emp.email %>">
+                            <%= emp.email %>
+                        </a></td>
+                    <td>
+                        <%= emp.mobile %>
+                    </td>
+                    <td>
+                        <%= emp.designation %>
+                    </td>
+                    <td>
+                        <%= emp.gender %>
+                    </td>
+                    <td>
+                        <%= emp.course.join(", ") %></td>
+          <td><%= emp.createdAt.toDateString() %></td>
+          <td>
+            <a href=" /employee/edit/<%=emp._id %>">Edit</a> -
+                            <a href="/employee/delete/<%= emp._id %>"
+                                onclick="return confirm('Are you sure?')">Delete</a>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+    <script src="/js/employee.js"></script>
+</body>
+
+</html>
