@@ -13,7 +13,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     const result = await res.json();
     if (result.success) {
       localStorage.setItem('userName', result.userName);
-      window.location.href = 'dashboard.html';
+      window.location.href = 'home';
     } else {
       alert(result.message);
     }

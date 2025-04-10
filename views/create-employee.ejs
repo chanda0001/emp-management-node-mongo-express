@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Employee</title>
+    <title>Create Employee</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style>
         .menu-bar {
@@ -51,50 +51,46 @@
     </nav>
 
     <!-- Menu Bar -->
-    <div class="menu-bar">Edit Employee</div>
+    <div class="menu-bar">Create Employee</div>
 
     <!-- Form Section -->
     <div class="container mt-5 pb-5">
-        <form id="employeeEditForm" method="POST" action="/employee/edit/<%= employee._id %>"
-            enctype="multipart/form-data" class="p-4 border rounded shadow bg-white">
+        <form id="employeeForm" method="POST" action="/employees" enctype="multipart/form-data"
+            class="p-4 border rounded shadow bg-white">
             <!-- <h4 class="mb-4 text-center">Create Employee</h4> -->
 
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" name="name" id="name" class="form-control" value="<%= employee.name %>" required />
+                <input type="text" name="name" id="name" class="form-control" required />
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" name="email" id="email" class="form-control" value="<%= employee.email %>"
-                    required />
+                <input type="email" name="email" id="email" class="form-control" required />
             </div>
 
             <div class="mb-3">
                 <label for="mobile" class="form-label">Mobile No</label>
-                <input type="text" name="mobile" id="mobile" class="form-control" pattern="\d{10}"
-                    value="<%= employee.mobile %>" required />
+                <input type="text" name="mobile" id="mobile" class="form-control" pattern="\d{10}" required />
             </div>
 
             <div class="mb-3">
                 <label for="designation" class="form-label">Designation</label>
                 <select name="designation" id="designation" class="form-select">
-                    <option value="HR" <%=employee.designation==='HR' ? 'selected' : '' %>>HR</option>
-                    <option value="Manager" <%=employee.designation==='Manager' ? 'selected' : '' %>>Manager</option>
-                    <option value="Sales" <%=employee.designation==='Sales' ? 'selected' : '' %>>Sales</option>
+                    <option value="HR">HR</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Sales">Sales</option>
                 </select>
             </div>
 
             <div class="mb-3">
                 <label class="form-label d-block">Gender</label>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" value="M" id="genderM"
-                        <%=employee.gender==='M' ? 'checked' : '' %> required />
+                    <input class="form-check-input" type="radio" name="gender" value="M" id="genderM" required />
                     <label class="form-check-label" for="genderM">Male</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" value="F" id="genderF"
-                        <%=employee.gender==='F' ? 'checked' : '' %> />
+                    <input class="form-check-input" type="radio" name="gender" value="F" id="genderF" />
                     <label class="form-check-label" for="genderF">Female</label>
                 </div>
             </div>
@@ -102,37 +98,30 @@
             <div class="mb-3">
                 <label class="form-label d-block">Course</label>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="course" value="MCA" id="courseMCA"
-                        <%=employee.course && employee.course.includes('MCA') ? 'checked' : '' %> />
+                    <input class="form-check-input" type="checkbox" name="course" value="MCA" id="courseMCA" />
                     <label class="form-check-label" for="courseMCA">MCA</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="course" value="BCA" id="courseBCA"
-                        <%=employee.course && employee.course.includes('BCA') ? 'checked' : '' %> />
+                    <input class="form-check-input" type="checkbox" name="course" value="BCA" id="courseBCA" />
                     <label class="form-check-label" for="courseBCA">BCA</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="course" value="BSC" id="courseBSC"
-                        <%=employee.course && employee.course.includes('BSC') ? 'checked' : '' %> />
+                    <input class="form-check-input" type="checkbox" name="course" value="BSC" id="courseBSC" />
                     <label class="form-check-label" for="courseBSC">BSC</label>
                 </div>
             </div>
 
             <div class="mb-3">
-                <label for="oldImage" class="form-label">Old Image</label>
-                <img src="/uploads/<%= employee.image %>" width="100" class="img-thumbnail mb-2" alt="Employee Image" />
-            </div>
-            <div class="mb-3">
                 <label for="image" class="form-label">Img Upload</label>
-                <input type="file" name="image" id="image" class="form-control" accept="image/png, image/jpeg" />
+                <input type="file" name="image" id="image" class="form-control" accept="image/png, image/jpeg"
+                    required />
             </div>
 
             <div class="text-center">
-                <button type="submit" class="btn btn-primary px-5">Update</button>
+                <button type="submit" class="btn btn-primary px-5">Submit</button>
             </div>
         </form>
     </div>
-
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 

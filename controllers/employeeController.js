@@ -1,5 +1,34 @@
 const Employee = require('../models/Employee');
 
+
+exports.viewLogimnForm = async (req, res) => {
+  try {
+    res.render('login');
+  } catch (err) {
+    console.error('Error:', err);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+exports.viewDashboard = async (req, res) => {
+  try {
+    res.render('dashboard');
+  } catch (err) {
+    console.error('Error:', err);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+
+exports.viewCreateForm = async (req, res) => {
+  try {
+    res.render('create-employee');
+  } catch (err) {
+    console.error('Error:', err);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
 exports.createEmployee = async (req, res) => {
   const { name, email, mobile, designation, gender, course } = req.body;
 
@@ -42,20 +71,20 @@ exports.postEditEmployee = async (req, res) => {
     const updateData = { ...req.body };
     console.log("Incoming updateData:", updateData);
 
-    // ✅ Normalize 'course' to always be an array
+    // Normalize 'course' to always be an array
     if (!Array.isArray(updateData.course)) {
       updateData.course = updateData.course ? [updateData.course] : [];
     }
 
-    // ✅ If image was uploaded, include it in the update
+    // If image was uploaded, include it in the update
     if (req.file) {
       updateData.image = req.file.filename;
     }
 
-    // ✅ Update employee by ID
+    // Update employee by ID
     await Employee.findByIdAndUpdate(req.params.id, updateData);
 
-    // ✅ Redirect to employee list
+    // Redirect to employee list
     res.redirect('/employee');
   } catch (err) {
     console.error("Error updating employee:", err);
@@ -111,5 +140,4 @@ exports.getAllEmployees = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 };
-
 

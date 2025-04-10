@@ -25,6 +25,9 @@ const employee = require('./routes/employee');
 app.use('/employee', employee);
 
 
+const approute = require('./routes/app-route');
+app.use('/', approute);
+
 const connectWithDb = require("./config/database");
 connectWithDb();
 
@@ -32,8 +35,8 @@ app.listen(PORT, () => {
   console.log(`Server started sucessfully at ${PORT}`);
 });
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'login.html'));
-  });
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public', 'login.html'));
+//   });
 
 

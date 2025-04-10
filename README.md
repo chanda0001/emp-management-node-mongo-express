@@ -36,3 +36,8 @@ To set up the project locally, follow these steps:
    ```bash
    git clone https://github.com/chanda0001/emp-management-node-mongo-express.git
    ```
+
+2. **Running the project:**
+    ```bash
+    $ npm run dev
+    ```

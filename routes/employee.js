@@ -37,49 +37,10 @@ router.get('/', async (req, res) => {
   }
 });
 
-// router.get('/edit/:id', async (req, res) => {
-//   try {
-//     const employee = await Employee.findById(req.params.id);
-//     if (!employee) {
-//       return res.status(404).send('Employee not found');
-//     }
-//     res.render('edit-employee', { employee });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send('Server error');
-//   }
-// });
-
-// router.post('/edit/:id', upload.single('image'), async (req, res) => {
-//   console.log('Edit route triggered for id:', req.params.id);
-//   try {
-//     console.log("Update route hit for employee ID:", req.params.id);
-//     console.log("Request body:", req.body);
-//     if (req.file) {
-//       console.log("File uploaded:", req.file.filename);
-//     }
-    
-//     const updateData = { ...req.body };
-//     if (req.file) {
-//       updateData.image = req.file.filename; 
-//     }
-    
-//     await Employee.findByIdAndUpdate(req.params.id, updateData);
-//     console.log("Employee updated successfully");
-//     res.redirect('/employee');
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send('Server error');
-//   }
-// });
-
+router.get('/create', employeeController.viewCreateForm);
 router.post('/create', upload.single('image'), employeeController.createEmployee);
 router.get('/', employeeController.getAllEmployees);
 router.get('/delete/:id', employeeController.deleteEmployee);
 router.get('/edit/:id', employeeController.getEditEmployee);
-
 router.post('/edit/:id', upload.single('image'), employeeController.postEditEmployee);
-
-
-
 module.exports = router;
